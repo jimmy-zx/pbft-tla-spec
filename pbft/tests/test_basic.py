@@ -117,6 +117,7 @@ def test_profile(name: str, override: dict[str, str], slow: bool, request) -> No
     PROFILES,
 )
 def test_liveness(name: str, override: dict[str, str], slow: bool, request) -> None:
+    _ = slow
     if not request.config.getoption("--run-slow"):
         pytest.skip()
     override |= {"SymNodes": "{}"}
