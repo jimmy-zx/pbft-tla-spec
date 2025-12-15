@@ -47,6 +47,11 @@ Environment:
 
 Download `tla2tools.jar` from [here](https://github.com/tlaplus/tlaplus/releases) to `prefix/lib/`.
 
+Setup a virtual environment using `python3 -m venv venv` from the project root.
+The file `.envrc` is a bash script that
+shows how the environmental variables are being setup.
+One can execute it directly or using `direnv`.
+
 ```
 cd pbft
 pip install -r requirements.txt
