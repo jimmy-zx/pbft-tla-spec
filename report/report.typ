@@ -149,9 +149,9 @@ at most $f$ out of $n >= 3f + 1$ replicas are faulty.
 Introduced by Castro and Liskov, PBFT provides a concrete algorithm and
 implementation techniques that achieve thousands of client requests per second
 with modest latency overhead, making Byzantine fault tolerance "practical" for
-real systems rather than merely a theoretical possibility @castro1999pbft;
-@castro2001thesis. At a high level, PBFT organizes execution into views with a
-designated primary replica, and each client request passes through a three-phase
+real systems rather than merely a theoretical possibility @castro1999pbft.
+At a high level, PBFT organizes execution into views with a
+designated primary replica, and each request passes through a three-phase
 agreement protocol (pre-prepare, prepare, commit) to ensure that all non-faulty
 replicas execute the same sequence of operations.
 
@@ -162,8 +162,9 @@ for ordering transactions and providing finality. In these environments, PBFT's
 safety guarantees and relatively low latency are attractive, but its quadratic
 communication complexity and static membership assumptions have motivated a
 large body of work on grouped, layered, and trust-based extensions tailored to
-blockchain and other high-throughput distributed systems @yuan2025pbftsurvey;
-@feng2022gpbft; @xue2022tpbft. As these systems increasingly underpin financial,
+blockchain and other high-throughput distributed systems
+@kogias2016 @moniz2020 @qin2023.
+As these systems increasingly underpin financial,
 healthcare, and critical infrastructure applications, the cost of subtle design
 or implementation errors in the consensus layer becomes correspondingly higher.
 
@@ -502,7 +503,7 @@ following statement:
   ),
 ) <not-enabled>
 
-This models the intuition that view changes are triggered by "lack of progress,"
+This models the intuition that view changes are triggered by "lack of progress",
 without committing to a particular timing model.
 
 On the new primary side, handling view-change messages collects two pieces of
