@@ -84,7 +84,7 @@ The base profile is located in `pbft/model.cfg`, and overrides
 can be found in `pbft/tests/test_basic.py::PROFILES`.
 
 `test_liveness` is the same as `test_profile`, except that
-it also checks liveness.
+it also checks liveness. It needs to be run with `--run-slow`.
 
 `test_path_reachable` checks if a certain state is reachable.
 The states are specified as an invariant in `pbft/model.tla`.
@@ -96,9 +96,6 @@ pytest "pbft/tests/test_basic.py::test_path_reachable[Path_{profile}_{name}-{pro
 ```
 
 Pytest can be ran with flag `-s` to show the outputs from TLC.
-
-The test `test_profile[stage2-override2-False]` runs around `01min 10s`
-on a 16-core machine.
 
 ## Limitations
 
