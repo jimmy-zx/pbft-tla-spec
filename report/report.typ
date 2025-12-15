@@ -37,19 +37,19 @@ protocols are typically deployed in mostly immutable environments, are publicly
 accessible to arbitrary adversarial interactions, and directly handle valuable
 digital assets. Design or implementation flaws—such as reentrancy
 vulnerabilities, integer overflows, or incorrect access control—have repeatedly
-led to multi-million-dollar losses. Similarly, logic errors in consensus or
+led to multi-million-dollar losses @chainReentrancyAttacks, @mediumBatchOverflowMultiple. Similarly, logic errors in consensus or
 cross-chain protocols may cause forks, double-spends, or permanently locked
 assets. The combination of immutability, adversarial inputs, and vast state
 spaces makes informal reasoning and testing alone insufficient for high
 confidence in correctness.
 
-In this work, we use the TLA+ specification language and its associated model
+In this work, we use the TLA+ @lamport2002specifying specification language and its associated model
 checker to investigate the formal verification of blockchain-related protocols,
-with a particular focus on Practical Byzantine Fault Tolerance (PBFT). Our main
+with a particular focus on Practical Byzantine Fault Tolerance (PBFT) @castro1999pbft. Our main
 objective is to develop a TLA+ model of PBFT and to verify its key correctness
 properties under explicit assumptions about failures and asynchrony. PBFT is a
 widely studied Byzantine fault-tolerant consensus protocol and forms the basis
-of many blockchain and permissioned-ledger systems. Its complexity makes it an
+of many blockchain and permissioned-ledger systems @omniledger2018, @kokoriskogias2016enhancingbitcoinsecurityperformance. Its complexity makes it an
 ideal target for formal verification. A precise, formally checked PBFT
 specification can serve both as a reference model for implementers and as a
 foundation for analyzing protocol variants, optimizations, and extensions.
@@ -77,7 +77,7 @@ These methods are particularly valuable when failures are rare but catastrophic.
 In hardware, a single design flaw may ship in millions of devices and be
 difficult or impossible to patch. In distributed infrastructures, rare race
 conditions or unexpected interleavings can trigger global outages or data
-corruption. In blockchains, a single vulnerability may irreversibly drain funds
+corruption @Newcombe2015amazon. In blockchains, a single vulnerability may irreversibly drain funds
 from a contract. In such high-stakes settings, the marginal cost of applying
 formal verification is often outweighed by the risk of an undetected bug.
 
@@ -127,8 +127,8 @@ how the violation occurs.
 
 TLA+ has been used extensively in academia to reason about concurrent
 algorithms, replicated data structures, and consensus protocols such as Paxos
-and Raft; and in industry—for example, in the design of large-scale storage
-systems and databases—to validate protocol designs before implementation. In the
+and Raft @lamport2020byzpaxos; and in industry—for example, in the design of large-scale storage
+systems and databases—to validate protocol designs before implementation @Newcombe2015amazon, @mediumEliminatingSmart, @mediumEliminatingSmart, @protocolsmadefunTLANotTLA, @ahelwerTLAMore. In the
 context of this project, TLA+ offers a natural framework for specifying
 blockchain consensus protocols and smart contracts, and for checking their
 properties against an adversarial environment.
