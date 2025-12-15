@@ -71,12 +71,20 @@ The following tests runs the specification.
       <Function test_profile[base-override0-False]>
       <Function test_profile[view1-override1-False]>
       <Function test_profile[stage2-override2-False]>
-      <Function test_profile[stage3-override3-True]>  # defunct for now
+      <Function test_profile[stage3-override3-True]>
+      <Function test_liveness[base-override0-False]>
+      <Function test_liveness[view1-override1-False]>
+      <Function test_liveness[stage2-override2-False]>
+      <Function test_liveness[stage3-override3-True]>
 ```
 
-`test_profile` runs the full specification with different profiles.
+`test_profile` runs the full specification (without liveness)
+with different profiles.
 The base profile is located in `pbft/model.cfg`, and overrides
 can be found in `pbft/tests/test_basic.py::PROFILES`.
+
+`test_liveness` is the same as `test_profile`, except that
+it also checks liveness.
 
 `test_path_reachable` checks if a certain state is reachable.
 The states are specified as an invariant in `pbft/model.tla`.
