@@ -1,0 +1,7 @@
+[tool.pylint."messages control"]
+disable = [
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "global-statement",
+    "unspecified-encoding",
+]
