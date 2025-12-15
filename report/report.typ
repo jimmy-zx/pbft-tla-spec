@@ -37,20 +37,23 @@ protocols are typically deployed in mostly immutable environments, are publicly
 accessible to arbitrary adversarial interactions, and directly handle valuable
 digital assets. Design or implementation flaws—such as reentrancy
 vulnerabilities, integer overflows, or incorrect access control—have repeatedly
-led to multi-million-dollar losses @chainReentrancyAttacks, @mediumBatchOverflowMultiple. Similarly, logic errors in consensus or
+led to multi-million-dollar losses @chainReentrancyAttacks,
+@mediumBatchOverflowMultiple. Similarly, logic errors in consensus or
 cross-chain protocols may cause forks, double-spends, or permanently locked
 assets. The combination of immutability, adversarial inputs, and vast state
 spaces makes informal reasoning and testing alone insufficient for high
 confidence in correctness.
 
-In this work, we use the TLA+ @lamport2002specifying specification language and its associated model
-checker to investigate the formal verification of blockchain-related protocols,
-with a particular focus on Practical Byzantine Fault Tolerance (PBFT) @castro1999pbft. Our main
-objective is to develop a TLA+ model of PBFT and to verify its key correctness
-properties under explicit assumptions about failures and asynchrony. PBFT is a
-widely studied Byzantine fault-tolerant consensus protocol and forms the basis
-of many blockchain and permissioned-ledger systems @omniledger2018, @kokoriskogias2016enhancingbitcoinsecurityperformance. Its complexity makes it an
-ideal target for formal verification. A precise, formally checked PBFT
+In this work, we use the TLA+ @lamport2002specifying specification language and
+its associated model checker to investigate the formal verification of
+blockchain-related protocols, with a particular focus on Practical Byzantine
+Fault Tolerance (PBFT) @castro1999pbft. Our main objective is to develop a TLA+
+model of PBFT and to verify its key correctness properties under explicit
+assumptions about failures and asynchrony. PBFT is a widely studied Byzantine
+fault-tolerant consensus protocol and forms the basis of many blockchain and
+permissioned-ledger systems @omniledger2018,
+@kokoriskogias2016enhancingbitcoinsecurityperformance. Its complexity makes it
+an ideal target for formal verification. A precise, formally checked PBFT
 specification can serve both as a reference model for implementers and as a
 foundation for analyzing protocol variants, optimizations, and extensions.
 
@@ -77,9 +80,10 @@ These methods are particularly valuable when failures are rare but catastrophic.
 In hardware, a single design flaw may ship in millions of devices and be
 difficult or impossible to patch. In distributed infrastructures, rare race
 conditions or unexpected interleavings can trigger global outages or data
-corruption @Newcombe2015amazon. In blockchains, a single vulnerability may irreversibly drain funds
-from a contract. In such high-stakes settings, the marginal cost of applying
-formal verification is often outweighed by the risk of an undetected bug.
+corruption @Newcombe2015amazon. In blockchains, a single vulnerability may
+irreversibly drain funds from a contract. In such high-stakes settings, the
+marginal cost of applying formal verification is often outweighed by the risk of
+an undetected bug.
 
 == Specifications and the Role of Abstraction
 
@@ -127,8 +131,10 @@ how the violation occurs.
 
 TLA+ has been used extensively in academia to reason about concurrent
 algorithms, replicated data structures, and consensus protocols such as Paxos
-and Raft @lamport2020byzpaxos; and in industry—for example, in the design of large-scale storage
-systems and databases—to validate protocol designs before implementation @Newcombe2015amazon, @mediumEliminatingSmart, @mediumEliminatingSmart, @protocolsmadefunTLANotTLA, @ahelwerTLAMore. In the
+and Raft @lamport2020byzpaxos; and in industry—for example, in the design of
+large-scale storage systems and databases—to validate protocol designs before
+implementation @Newcombe2015amazon, @mediumEliminatingSmart,
+@mediumEliminatingSmart, @protocolsmadefunTLANotTLA, @ahelwerTLAMore. In the
 context of this project, TLA+ offers a natural framework for specifying
 blockchain consensus protocols and smart contracts, and for checking their
 properties against an adversarial environment.
@@ -236,10 +242,10 @@ sent by the client.
     ],
     caption: [
       An example TLA+ code snippet for message of type _prepare_. `view` is the
-      view number; `seq` is the sequence number; `i` is the id of the replica that
-      sends this message; `d` is the request sent by the client.
+      view number; `seq` is the sequence number; `i` is the id of the replica
+      that sends this message; `d` is the request sent by the client.
     ],
-  )
+  ),
 )
 
 A notable modeling decision is that we omit the digest field that appears in the
@@ -276,7 +282,7 @@ view-change-related modes).
       ```
     ],
     caption: [TLA+ code that defines the type of `status`.],
-  )
+  ),
 )
 
 The status field explicitly encodes PBFT's phase progression. The normal-case
@@ -316,10 +322,10 @@ designated primary as a deterministic function of the current view.
     caption: [TLA+ code that defines the `GetPrimary(node)` predicate where the
       parameter `node` is the id of the node. `NodeState[node].view` fetches the
       `NodeState` record associated with `node` and access the `view` field. The
-      symbol `%` represents the modular arithmetic operation. `PrimaryNodes` is a
-      subset of nodes that can become primary. `Cardinality` computes the
+      symbol `%` represents the modular arithmetic operation. `PrimaryNodes` is
+      a subset of nodes that can become primary. `Cardinality` computes the
       Cardinality of that set.],
-  )
+  ),
 )
 
 In effect, the model rotates the primary across a fixed subset of nodes using
@@ -371,7 +377,7 @@ send, prepare/commit handling).
     ],
     caption: [The honest behavior is defined as a disjunction of allowed state
       transitions to an honest replica.],
-  )
+  ),
 )
 
 
@@ -405,7 +411,7 @@ in `FaultNext(node)`.
     ],
     caption: [The state transition that allows honest node to take an honest
       update and a faulty node to take a faulty update.],
-  )
+  ),
 )
 
 This makes the fault model extensional: Byzantine behavior is not "inferred"
@@ -448,7 +454,7 @@ per-recipient messages accordingly.
       `mapping[SomeNodes] = data1` and `mapping[OtherNodes] = data2` where
       `SomeNodes ∪ OtherNodes = Nodes`.
     ],
-  )
+  ),
 )
 
 The use of a two-valued choice is a trick to represent "conflicting requests"
@@ -490,10 +496,10 @@ following statement:
       ```
     ],
     caption: [`NormalNext` represents any valid normal-case protocol step as we
-      discussed in @NodeState. The keyword `ENABLED` asserts that there exists at
-      least one such step that could occur from the current state. The `~` symbol
-      negates the assertion.],
-  )
+      discussed in @NodeState. The keyword `ENABLED` asserts that there exists
+      at least one such step that could occur from the current state. The `~`
+      symbol negates the assertion.],
+  ),
 ) <not-enabled>
 
 This models the intuition that view changes are triggered by "lack of progress,"
