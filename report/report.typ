@@ -134,7 +134,7 @@ algorithms, replicated data structures, and consensus protocols such as Paxos
 and Raft @lamport2020byzpaxos; and in industry—for example, in the design of
 large-scale storage systems and databases—to validate protocol designs before
 implementation @Newcombe2015amazon, @mediumEliminatingSmart,
-@mediumEliminatingSmart, @protocolsmadefunTLANotTLA, @ahelwerTLAMore. In the
+@mediumEliminatingSmart, @ahelwerTLAMore. In the
 context of this project, TLA+ offers a natural framework for specifying
 blockchain consensus protocols and smart contracts, and for checking their
 properties against an adversarial environment.
